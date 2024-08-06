@@ -1,0 +1,67 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.isort]
+profile = "black"
+skip = ["env", "venv"]
+
+[tool.poetry]
+authors = ["Nir Tal <nirt236@gmail.com>"]
+description = "Selenium Python example project with pytest and Allure report"
+homepage = "https://github.com/nirtal85/Selenium-Python-Example"
+name = "selenium-python-example"
+packages = [{include = "selenium_python_example"}]
+readme = "README.md"
+repository = "https://github.com/nirtal85/Selenium-Python-Example"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+allure-pytest = "2.13.5"
+assertpy = "1.1"
+dataclasses-json = "0.6.7"
+deprecated = "1.2.14"
+mailinator-python-client-2 = "0.0.6"
+mysql-connector-python = "9.0.0"
+pytest = "8.3.2"
+pytest-base-url = "2.1.0"
+pytest-check = "2.3.1"
+pytest-dependency = "0.6.0"
+pytest-ordering = "0.6"
+pytest-rerunfailures = "14.0"
+python = "^3.11"
+python-dotenv = "1.0.1"
+requests = "2.32.3"
+requests-toolbelt = "1.0.0"
+selenium = "4.23.1"
+tenacity = "9.0.0"
+visual-regression-tracker = "4.9.0"
+xlrd = "2.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "24.4.2"
+isort = "5.13.2"
+pre-commit = "3.8.0"
+
+[tool.pytest.ini_options]
+addopts = [
+  "--clean-alluredir",
+  "--alluredir=allure-results",
+  "--allure-link-pattern",
+  "issue:https://{}",
+  "--allure-link-pattern",
+  "link:https://{}",
+  "--allure-link-pattern",
+  "tms:https://{}",
+  "--color=yes",
+  "-s",
+  "-p no:logging"
+]
+base_url = 'https://www.involve.me/'
+markers = [
+  "security: marks security tests",
+  "devRun: marks tests that run before merge to the main branch"
+]
+testpaths = [
+  "tests"
+]
